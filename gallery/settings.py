@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-_uq)mcq)+efj+#0=ga1^cfd40pn@+!uhr4qe%0ykr9a71=m&()
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
 
 
 # Application definition
@@ -77,7 +77,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'gallery.wsgi.application'
+WSGI_APPLICATION = 'gallery.wsgi.app'
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
