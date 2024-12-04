@@ -1,0 +1,11 @@
+{
+    "builds": [
+      {
+        "src": "your_django_project/*",
+        "use": "@vercel/python"
+      }
+    ],
+    "env": {
+      "PYTHON_VERSION": "3.8.10"
+    }
+}
