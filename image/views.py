@@ -186,15 +186,14 @@ def single_image(request, image_id):
     
     if not token_validation['valid']:
         return Response({"message": token_validation["error"]}, status=401)
-    
-    # Validate ownership of the image
-    token = token_validation['token']
-    image = ownership_validation(token['user_id'], image_id)
-    
-    if not image["valid"]:
-        return Response({"message": image["message"]}, status=int(image["status"]))
 
     try:
+        # Validate ownership of the image
+        token = token_validation['token']
+        image = ownership_validation(token['user_id'], image_id)
+    
+        if not image["valid"]:
+            return Response({"message": image["message"]}, status=int(image["status"]))
         # Serialize the image data
         result = image_serializer(image['image'])
         return Response({"image": result.data}, status=200)

@@ -40,7 +40,7 @@ def register(request):
         # Check if the user already exists
         is_existed = User.objects.filter(email=email).first()
         if is_existed:
-            return Response({"message": "User already exists"}, status=400)
+            return Response({"message": "User already exists"}, status=409)
 
         # Generate OTP
         otp_code = code_generator(email)
@@ -59,7 +59,6 @@ def register(request):
         return Response({"message": "OTP code has been sent to your email", "token": token}, status=200)
 
     except Exception as e:
-        logger.error(f"Internal Server Error: {str(e)}", exc_info=True)
         return Response({"message": "Internal Server Error"}, status=500)
 
 
@@ -108,7 +107,6 @@ def verify_otp(request):
         return Response({"message": "User is created successfully"}, status=201)
 
     except Exception as e:
-        logger.error(f"Internal Server Error: {str(e)}", exc_info=True)
         return Response({"message": "Internal Server Error"}, status=500)
 
 
@@ -145,5 +143,4 @@ def login(request):
         return Response({"message": "Logged in successfully", "token": token}, status=200)
 
     except Exception as e:
-        logger.error(f"Internal Server Error: {str(e)}", exc_info=True)
         return Response({"message": "Internal Server Error"}, status=500)

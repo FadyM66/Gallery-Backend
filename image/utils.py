@@ -110,6 +110,7 @@ def generate_caption(image_url):
 
 
 def ownership_validation(user_id, image_id):
+
     
     try:
         img = Image.objects.filter(id=image_id).first()
